@@ -1,8 +1,15 @@
 function photographerFactory(data) {
     const { name, id, city, country, tagline, price, portrait} = data;
+    console.log(data, "4");
+    console.log(portrait, "5");
 
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `../../assets/photographers/${portrait}`;
+    console.log(picture, "5");
 
+    /**
+     * create photographe card for photographer_section in index.html
+     * @returns article
+     */
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
@@ -38,5 +45,30 @@ function photographerFactory(data) {
         
         return (article);
     }
-    return { name, picture, getUserCardDOM }
+    
+    /**
+     * create description and portrait for photograph-header in photographer.html
+     * @returns 
+     */
+    function getPhotographeDOM() {
+        const divDescription = document.createElement('div');
+        const imgPhotographe = document.createElement('img');
+        const h1 = document.createElement( 'h1' );
+        const localisation = document.createElement("span");
+        const spanTagline = document.createElement('span');
+
+        imgPhotographe.setAttribute("src", picture);
+        //console.log(imgPhotographe);
+        h1.textContent = name;
+        localisation.textContent = `${city}, ${country}`;
+        spanTagline.textContent = tagline;
+
+        divDescription.appendChild(h1);
+        divDescription.appendChild(localisation);
+        divDescription.appendChild(spanTagline);
+
+        //console.log(divDescription, imgPhotographe);
+        return {divDescription, imgPhotographe};
+    }
+    return { name, picture, getUserCardDOM, getPhotographeDOM }
 }
