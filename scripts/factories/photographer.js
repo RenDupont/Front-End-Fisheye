@@ -1,10 +1,7 @@
 function photographerFactory(data) {
-    const { name, id, city, country, tagline, price, portrait} = data;
-    console.log(data, "4");
-    console.log(portrait, "5");
+    const { name, id, city, country, tagline, price, portrait } = data;
 
     const picture = `../../assets/photographers/${portrait}`;
-    console.log(picture, "5");
 
     /**
      * create photographe card for photographer_section in index.html
@@ -58,17 +55,93 @@ function photographerFactory(data) {
         const spanTagline = document.createElement('span');
 
         imgPhotographe.setAttribute("src", picture);
-        //console.log(imgPhotographe);
         h1.textContent = name;
         localisation.textContent = `${city}, ${country}`;
         spanTagline.textContent = tagline;
+
+        imgPhotographe.classList.add("photograph-header_portrait");
+        divDescription.classList.add("photograph-header_description");
+        localisation.classList.add("photograph-header_localisation");
+        spanTagline.classList.add("photograph-header_tagline");
 
         divDescription.appendChild(h1);
         divDescription.appendChild(localisation);
         divDescription.appendChild(spanTagline);
 
-        //console.log(divDescription, imgPhotographe);
         return {divDescription, imgPhotographe};
     }
+
+    function getMediaCardDOM() {
+        const article = document.createElement( 'article' );
+        const link = document.createElement('a');
+        const img = document.createElement( 'img' );
+        const spanName = document.createElement('span');
+        const spanLikeNumber = document.createElement("span");
+        const iconLike = document.createElement('icon');
+
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", "");
+        h2.textContent = name;
+        link.href = `photographer.html?id=${id}`;
+        link.setAttribute("focusable", true);
+        link.setAttribute("alt", name);
+        link.setAttribute("role", "link");
+        localisation.textContent = `${city}, ${country}`;
+        spanTagline.textContent = tagline;
+        spanPrice.textContent = `${price}€/jour`;
+
+        img.classList.add("photographer_portrait")
+        h2.classList.add("photographer_name");
+        localisation.classList.add("photographer_localisation");
+        spanTagline.classList.add("photographer_tagline");
+        spanPrice.classList.add("photographer_price");
+
+        link.appendChild(img);
+        link.appendChild(h2);
+        article.appendChild(link);
+        article.appendChild(localisation);
+        article.appendChild(spanTagline);
+        article.appendChild(spanPrice);
+        
+        return (article);
+    }
+
     return { name, picture, getUserCardDOM, getPhotographeDOM }
+}
+
+function photographerMediaFactory(data) {
+    const { id, title, image, likes, date, price } = data;
+    const picture = `../../assets/images/media/${image}`;
+
+    function getMediaCardDOM() {
+        const article = document.createElement( 'article' );
+        const link = document.createElement('a');
+        const img = document.createElement( 'img' );
+        const spanName = document.createElement('span');
+        const spanLikeNumber = document.createElement("span");
+        const iconLike = document.createElement('i');
+        const divDescription = document.createElement('div');
+
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", "");
+        link.href = "";
+        link.setAttribute("focusable", true);
+        link.setAttribute("role", "link");
+        spanName.textContent = title;
+        spanLikeNumber.textContent = likes;
+
+        iconLike.classList.add('fas', 'fa-heart');
+        img.classList.add("photograph-section_mediaImg");
+
+        link.appendChild(img);
+        divDescription.appendChild(spanName);
+        divDescription.appendChild(spanLikeNumber);
+        divDescription.appendChild(iconLike);
+        article.appendChild(link);
+        article.appendChild(divDescription);
+        
+        return (article);
+    }
+
+    return { getMediaCardDOM }
 }

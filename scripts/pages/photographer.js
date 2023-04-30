@@ -4,15 +4,13 @@ async function getParams() {
     let urlParams = window.location.search;
     params = new URLSearchParams(urlParams);
     let id = parseInt(params.get('id'));
-    console.log(id);
     return id;
 }
 
 async function getPhotographer(id) {     
     const response = await fetch("../../data/photographers.json");
     const data = await response.json();
-    const photographer = data.photographers.filter(photographers => photographers.id === id);
-    console.log(photographer, "1");
+    const photographer = data.photographers.find(photographers => photographers.id === id);
     return photographer;
 }
 
@@ -23,25 +21,29 @@ async function getMedia(id) {
     return media;
 }
 
-async function displayData(photographer) {
+async function displayData(photographer, media) {
     const photographHeader = document.querySelector(".photograph-header");
+    const mediaSection = document.querySelector('.photograph-section');
 
-    console.log(photographer, "2");
     const photographerModel = photographerFactory(photographer);
     const photographerDOM = photographerModel.getPhotographeDOM();
-    //console.log(photographerDOM);
     photographHeader.append(photographerDOM.imgPhotographe);
     photographHeader.append(photographerDOM.divDescription);
+
+    media.forEach(element => {
+        const mediaModel = photographerMediaFactory(element);
+        const mediaCardDOM = mediaModel.getMediaCardDOM();
+        mediaSection.appendChild(mediaCardDOM);
+    });
 }
 
 async function init() {
     const id = await getParams();
     const media = await getMedia(id);
-    const photographer = await getPhotographer(id);
     //console.log(media);
-    console.log(photographer, "3");
+    const photographer = await getPhotographer(id);
     
-    displayData(photographer);
+    displayData(photographer, media);
 };
 
 init();

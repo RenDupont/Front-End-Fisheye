@@ -3,6 +3,7 @@
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
+    max-width: 1440px;
 }
 
 
@@ -65,7 +66,7 @@ h1 {
 
 .photographer_price {
     font-size: 9px;
-    font-weight: 12px;
+    font-weight: 400;
     color: #757575;
 }
 
