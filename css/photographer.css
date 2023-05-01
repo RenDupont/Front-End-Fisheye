@@ -52,7 +52,7 @@
     color: #525252;
 }
 
-.photograph-section {
+.media-section {
     /*display: grid;
     grid-template-columns: 1fr 1fr 1fr;*/
     display: flex;
@@ -64,11 +64,21 @@
     align-items: center;
 }
 
-.photograph-section_mediaImg {
+.media-section_mediaImg {
     width: 350px;
     height: 300px;
     border-radius: 5px;
     object-fit: cover;
+}
+
+.media-description {
+    display: flex;
+    justify-content: space-between;
+    color: #901C1C;
+}
+
+.media-like i {
+    padding-left: 6px;
 }
 
 .contact_button {

@@ -23,7 +23,7 @@ async function getMedia(id) {
 
 async function displayData(photographer, media) {
     const photographHeader = document.querySelector(".photograph-header");
-    const mediaSection = document.querySelector('.photograph-section');
+    const mediaSection = document.querySelector('.media-section');
 
     const photographerModel = photographerFactory(photographer);
     const photographerDOM = photographerModel.getPhotographeDOM();
@@ -31,7 +31,7 @@ async function displayData(photographer, media) {
     photographHeader.append(photographerDOM.divDescription);
 
     media.forEach(element => {
-        const mediaModel = photographerMediaFactory(element);
+        const mediaModel = mediaFactory(element);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediaSection.appendChild(mediaCardDOM);
     });

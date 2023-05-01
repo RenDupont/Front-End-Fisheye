@@ -109,21 +109,35 @@ function photographerFactory(data) {
     return { name, picture, getUserCardDOM, getPhotographeDOM }
 }
 
-function photographerMediaFactory(data) {
-    const { id, title, image, likes, date, price } = data;
-    const picture = `../../assets/images/media/${image}`;
+function mediaFactory(data) {
+    const { id, title, image, video, likes, date, price } = data;
+
+    let picture;
 
     function getMediaCardDOM() {
+
+        let media;
+        if(data.hasOwnProperty('image')) {
+            picture = `../../assets/images/media/${image}`;
+            media = document.createElement( 'img' );
+            media.setAttribute("src", picture);
+            media.setAttribute("alt", "");
+        }
+        else if(data.hasOwnProperty('video')) {
+            picture = `../../assets/images/media/${video}`;
+            media = document.createElement('video');
+            media.setAttribute("src", picture);
+            media.controls = true;
+        }
+
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
-        const img = document.createElement( 'img' );
         const spanName = document.createElement('span');
         const spanLikeNumber = document.createElement("span");
         const iconLike = document.createElement('i');
         const divDescription = document.createElement('div');
+        const divLike = document.createElement('div');
 
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", "");
         link.href = "";
         link.setAttribute("focusable", true);
         link.setAttribute("role", "link");
@@ -131,12 +145,15 @@ function photographerMediaFactory(data) {
         spanLikeNumber.textContent = likes;
 
         iconLike.classList.add('fas', 'fa-heart');
-        img.classList.add("photograph-section_mediaImg");
+        media.classList.add("media-section_mediaImg");
+        divDescription.classList.add("media-description");
+        divLike.classList.add("media-like");
 
-        link.appendChild(img);
+        link.appendChild(media);
         divDescription.appendChild(spanName);
-        divDescription.appendChild(spanLikeNumber);
-        divDescription.appendChild(iconLike);
+        divLike.appendChild(spanLikeNumber);
+        divLike.appendChild(iconLike);
+        divDescription.appendChild(divLike);
         article.appendChild(link);
         article.appendChild(divDescription);
         
