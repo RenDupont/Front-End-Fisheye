@@ -71,41 +71,6 @@ function photographerFactory(data) {
         return {divDescription, imgPhotographe};
     }
 
-    function getMediaCardDOM() {
-        const article = document.createElement( 'article' );
-        const link = document.createElement('a');
-        const img = document.createElement( 'img' );
-        const spanName = document.createElement('span');
-        const spanLikeNumber = document.createElement("span");
-        const iconLike = document.createElement('icon');
-
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", "");
-        h2.textContent = name;
-        link.href = `photographer.html?id=${id}`;
-        link.setAttribute("focusable", true);
-        link.setAttribute("alt", name);
-        link.setAttribute("role", "link");
-        localisation.textContent = `${city}, ${country}`;
-        spanTagline.textContent = tagline;
-        spanPrice.textContent = `${price}€/jour`;
-
-        img.classList.add("photographer_portrait")
-        h2.classList.add("photographer_name");
-        localisation.classList.add("photographer_localisation");
-        spanTagline.classList.add("photographer_tagline");
-        spanPrice.classList.add("photographer_price");
-
-        link.appendChild(img);
-        link.appendChild(h2);
-        article.appendChild(link);
-        article.appendChild(localisation);
-        article.appendChild(spanTagline);
-        article.appendChild(spanPrice);
-        
-        return (article);
-    }
-
     return { name, picture, getUserCardDOM, getPhotographeDOM }
 }
 

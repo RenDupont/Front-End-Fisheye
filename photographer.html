@@ -14,24 +14,38 @@
         <img src="assets/images/logo.png" class="logo" alt="logo du site">
       </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
         <button class="contact_button">Contactez-moi</button>
       </div>
       <section class="media-section"></section>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" aria-hidden="true" role="dialog">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img class="close" src="assets/icons/close.svg">
+          <div class="nameModal" role="heading">
+            <h2>Contactez-moi</h2>
+          </div>
+          <img class="close" src="assets/icons/close.svg" role="button">
         </header>
 				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
+					<div class="formData">
+						<label for="first" role="label">Prénom</label>
+						<input id="first" type="text" name="first" role="textbox" required>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <div class="formData">
+						<label for="last" role="label">Nom</label>
+						<input id="last" type="text" name="last" role="textbox" required>
+					</div>
+          <div class="formData">
+						<label for="email" role="label">Email</label>
+						<input id="email" type="text" name="email" role="textbox" required>
+					</div>
+          <div class="formData">
+						<label for="message" role="label">Votre message</label>
+						<input id="message" type="text" name="" role="textbox" required>
+					</div>
+          <button class="contact_button" role="button">Envoyer</button>
 				</form>
 			</div>
 		</div>
