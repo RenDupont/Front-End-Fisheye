@@ -113,6 +113,7 @@ function mediaFactory(data) {
         media.classList.add("media-section_mediaImg");
         divDescription.classList.add("media-description");
         divLike.classList.add("media-like");
+        link.classList.add("lightbox-link");
 
         link.appendChild(media);
         divDescription.appendChild(spanName);

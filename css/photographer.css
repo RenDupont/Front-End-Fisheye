@@ -10,6 +10,18 @@
     background: rgba(196, 196, 196, 0.4);
 }
 
+#lightbox_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background: rgba(196, 196, 196, 0.4);
+}
+
 #message {
     height: 170px;
     text-align: left;
@@ -114,7 +126,7 @@
     margin-top: 26px;
 }
 
-.modal {
+.contact-modalContent {
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
@@ -127,16 +139,16 @@
     max-width: 669px;
 }
 
-.modal header {
+.contact-modalContent header {
     justify-content: space-between;
     width: 100%;
 }
 
-.modal header img {
+.contact-modalContent header img {
     cursor: pointer;
 }
 
-.modal header h2 {
+.contact-modalContent header h2 {
     font-size: 64px;
     font-weight: normal;
     text-align: center;
@@ -166,4 +178,20 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.lightbox-modalContent {
+    /*
+    *temporary
+    */
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: 5% auto;
+    max-width: 669px;
 }
