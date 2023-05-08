@@ -96,16 +96,14 @@ function mediaFactory(data) {
         }
 
         const article = document.createElement( 'article' );
-        const link = document.createElement('a');
         const spanName = document.createElement('span');
         const spanLikeNumber = document.createElement("span");
         const iconLike = document.createElement('i');
         const divDescription = document.createElement('div');
         const divLike = document.createElement('div');
 
-        link.href = "";
-        link.setAttribute("focusable", true);
-        link.setAttribute("role", "link");
+        media.setAttribute("focusable", true);
+        media.setAttribute("role", "link");
         spanName.textContent = title;
         spanLikeNumber.textContent = likes;
 
@@ -113,14 +111,14 @@ function mediaFactory(data) {
         media.classList.add("media-section_mediaImg");
         divDescription.classList.add("media-description");
         divLike.classList.add("media-like");
-        link.classList.add("lightbox-link");
+        media.classList.add("lightbox-link");
+        media.addEventListener('click', displayMediaModal);
 
-        link.appendChild(media);
         divDescription.appendChild(spanName);
         divLike.appendChild(spanLikeNumber);
         divLike.appendChild(iconLike);
         divDescription.appendChild(divLike);
-        article.appendChild(link);
+        article.appendChild(media);
         article.appendChild(divDescription);
         
         return (article);

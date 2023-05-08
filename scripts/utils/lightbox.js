@@ -1,19 +1,20 @@
-document.addEventListener("DOMContentLoaded", function() {
-    function displayModal(event) {
-        event.preventDefault();
+
+    function displayMediaModal() {
     
         const modal = document.getElementById("lightbox_modal");
         const main = document.getElementById("main");
         const body = document.body;
+        const img = document.querySelector(".imageLightbox");
     
-    
+        img.src = this.src;
         modal.style.display = "block";
         main.setAttribute("aria-hidden", true);
         modal.setAttribute("aria-hidden", false);
         body.classList.add("no-scroll");
     }
     
-    function closeModal() {
+    function closeMediaModal() {
+        console.log('click');
         const modal = document.getElementById("lightbox_modal");
         const main = document.getElementById("main");
         const body = document.body;
@@ -25,18 +26,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     function closeWithKeyDown(event) {
-        if (event.key === "Escape") {
-          closeModal();
+        if(event.key === "Escape") {
+            closeMediaModal();
         }
     }
     
     //DOM
     const modalLightbox = document.querySelector(".lightbox-link");
     console.log(modalLightbox);
-    const modalLightboxClose = document.querySelector(".close");
+    const modalLightboxClose = document.querySelector(".closeLightbox");
     
     //event
-    modalLightbox.addEventListener("click", displayModal);
-    modalLightboxClose.addEventListener("click", closeModal);
+    //modalLightbox.addEventListener("click", displayModal);
+    modalLightboxClose.addEventListener("click", closeMediaModal);
     document.addEventListener("keydown", closeWithKeyDown);
-});

@@ -56,7 +56,7 @@ init();*/
 
 //DOM
 const modalButton = document.querySelector(".contact_button");
-const modalClose = document.querySelector(".close");
+const modalClose = document.querySelector(".closeContact");
 
 //event
 modalButton.addEventListener("click", displayModal);

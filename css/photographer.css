@@ -19,7 +19,7 @@
     height: 100%;
     width: 100%;
     overflow: auto;
-    background: rgba(196, 196, 196, 0.4);
+    background: white;
 }
 
 #message {
@@ -99,6 +99,7 @@
     height: 300px;
     border-radius: 5px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .media-description {
@@ -144,7 +145,7 @@
     width: 100%;
 }
 
-.contact-modalContent header img {
+.closeContact {
     cursor: pointer;
 }
 
@@ -185,13 +186,39 @@ form input {
     *temporary
     */
     border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: 5% auto;
-    max-width: 669px;
+    max-width: 1253px;
+}
+
+.lightbox-modalContent div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeLightbox {
+    cursor: pointer;
+    fill: #911C1C;
+    position: absolute;
+    right: 15%;
+    top: 12%;
+    height: 42px;
+    width: 42px;
+}
+
+.imageLightbox {
+    max-width: 1050px;
+    height: 900px;
+}
+
+.controlArrow {
+    height: 30px;
+    width: 48px;
+    cursor: pointer;
 }
