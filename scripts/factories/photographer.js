@@ -79,21 +79,21 @@ function mediaFactory(data) {
 
     let picture;
 
-    function getMediaCardDOM() {
+    let media;
+    if(data.hasOwnProperty('image')) {
+        picture = `../../assets/images/media/${image}`;
+        media = document.createElement( 'img' );
+        media.setAttribute("src", picture);
+        media.setAttribute("alt", "");
+    }
+    else if(data.hasOwnProperty('video')) {
+        picture = `../../assets/images/media/${video}`;
+        media = document.createElement('video');
+        media.setAttribute("src", picture);
+        media.controls = true;
+    }
 
-        let media;
-        if(data.hasOwnProperty('image')) {
-            picture = `../../assets/images/media/${image}`;
-            media = document.createElement( 'img' );
-            media.setAttribute("src", picture);
-            media.setAttribute("alt", "");
-        }
-        else if(data.hasOwnProperty('video')) {
-            picture = `../../assets/images/media/${video}`;
-            media = document.createElement('video');
-            media.setAttribute("src", picture);
-            media.controls = true;
-        }
+    function getMediaCardDOM() {
 
         const article = document.createElement( 'article' );
         const spanName = document.createElement('span');
@@ -124,5 +124,5 @@ function mediaFactory(data) {
         return (article);
     }
 
-    return { getMediaCardDOM }
+    return { getMediaCardDOM, image }
 }

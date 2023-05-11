@@ -32,11 +32,9 @@
     }
     
     //DOM
-    const modalLightbox = document.querySelector(".lightbox-link");
-    console.log(modalLightbox);
     const modalLightboxClose = document.querySelector(".closeLightbox");
     
     //event
-    //modalLightbox.addEventListener("click", displayModal);
+    //modalLightbox.addEventListener("click", displayModal);    in photographer.js
     modalLightboxClose.addEventListener("click", closeMediaModal);
     document.addEventListener("keydown", closeWithKeyDown);
