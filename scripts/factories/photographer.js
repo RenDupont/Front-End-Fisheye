@@ -113,6 +113,7 @@ function mediaFactory(data) {
         divLike.classList.add("media-like");
         media.classList.add("lightbox-link");
         media.addEventListener('click', displayMediaModal);
+        spanLikeNumber.classList.add('numLikeMedia');
 
         divDescription.appendChild(spanName);
         divLike.appendChild(spanLikeNumber);

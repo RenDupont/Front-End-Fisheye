@@ -65,6 +65,46 @@ function gogoToPreviewsMedia() {
     console.log('click2');
 }*/
 
+const dropBtns = document.querySelectorAll(".dropbtn");
+const populariteBtn = document.getElementById("popularite");
+
+dropBtns.forEach(function(btn) {
+    btn.addEventListener('mouseover', function() {
+      populariteBtn.classList.remove('dropbtnRadiusDefault');
+      populariteBtn.classList.add('dropbtnHovered');
+    });
+  
+    btn.addEventListener('mouseout', function() {
+      populariteBtn.classList.remove('dropbtnHovered');
+      populariteBtn.classList.add('dropbtnRadiusDefault');
+    });
+});
+
+const popularityButton = document.getElementById("popularite");
+popularityButton.addEventListener("click", sortMediaByLike);
+
+function sortMediaByLike() {
+
+  const mediaSection = document.querySelector('.media-section');
+  
+  const mediaElements = Array.from(mediaSection.children);
+
+  mediaElements.sort((a, b) => {
+    const valueA = parseInt(a.querySelector('.numLikeMedia').textContent);
+    const valueB = parseInt(b.querySelector('.numLikeMedia').textContent);
+    return valueA - valueB;
+  });
+
+  while (mediaSection.firstChild) {
+    mediaSection.removeChild(mediaSection.firstChild);
+  }
+
+  mediaElements.forEach(element => {
+    mediaSection.appendChild(element);
+  });
+}
+
+
 async function init() {
     const id = await getParams();
     const media = await getMedia(id);
