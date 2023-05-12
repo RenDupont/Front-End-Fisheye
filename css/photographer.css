@@ -178,6 +178,10 @@
     color: #901C1C;
 }
 
+.dateMedia {
+    display: none;
+}
+
 .media-like i {
     padding-left: 6px;
 }

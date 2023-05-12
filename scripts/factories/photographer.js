@@ -75,7 +75,7 @@ function photographerFactory(data) {
 }
 
 function mediaFactory(data) {
-    const { id, title, image, video, likes, date, price } = data;
+    const { title, image, video, likes, date } = data;
 
     let picture;
 
@@ -97,6 +97,7 @@ function mediaFactory(data) {
 
         const article = document.createElement( 'article' );
         const spanName = document.createElement('span');
+        const spanDate = document.createElement('span');
         const spanLikeNumber = document.createElement("span");
         const iconLike = document.createElement('i');
         const divDescription = document.createElement('div');
@@ -105,6 +106,7 @@ function mediaFactory(data) {
         media.setAttribute("focusable", true);
         media.setAttribute("role", "link");
         spanName.textContent = title;
+        spanDate.textContent = date;
         spanLikeNumber.textContent = likes;
 
         iconLike.classList.add('fas', 'fa-heart');
@@ -114,8 +116,11 @@ function mediaFactory(data) {
         media.classList.add("lightbox-link");
         media.addEventListener('click', displayMediaModal);
         spanLikeNumber.classList.add('numLikeMedia');
+        spanDate.classList.add('dateMedia');
+        spanName.classList.add('mediaName');
 
         divDescription.appendChild(spanName);
+        divDescription.appendChild(spanDate);
         divLike.appendChild(spanLikeNumber);
         divLike.appendChild(iconLike);
         divDescription.appendChild(divLike);

@@ -38,6 +38,7 @@ async function displayData(photographer, media) {
         //listSrcMedia.push(mediaModel.image);
         mediaSection.appendChild(mediaCardDOM);
     });
+    sortMediaByLike();
 }
 
 /*function findImageIndex(listSrc, currentSrc) {
@@ -65,6 +66,7 @@ function gogoToPreviewsMedia() {
     console.log('click2');
 }*/
 
+//mise en forme du menu de tri
 const dropBtns = document.querySelectorAll(".dropbtn");
 const populariteBtn = document.getElementById("popularite");
 
@@ -80,6 +82,8 @@ dropBtns.forEach(function(btn) {
     });
 });
 
+
+//tri par nombre de like
 const popularityButton = document.getElementById("popularite");
 popularityButton.addEventListener("click", sortMediaByLike);
 
@@ -87,6 +91,7 @@ function sortMediaByLike() {
 
   const mediaSection = document.querySelector('.media-section');
   
+  //liste de card media
   const mediaElements = Array.from(mediaSection.children);
 
   mediaElements.sort((a, b) => {
@@ -103,6 +108,66 @@ function sortMediaByLike() {
     mediaSection.appendChild(element);
   });
 }
+
+//tri par titre
+const titleButton = document.getElementById("titre");
+titleButton.addEventListener("click", sortMediaByTitle);
+
+function sortMediaByTitle() {
+  
+  const mediaSection = document.querySelector('.media-section');
+  
+  //liste de card media
+  const mediaElements = Array.from(mediaSection.children);
+
+  mediaElements.sort((a, b) => {
+    const titleA = a.querySelector('.mediaName').textContent.toLowerCase();
+    const titleB = b.querySelector('.mediaName').textContent.toLowerCase();
+
+    if (titleA < titleB) {
+      return -1;
+    } else if (titleA > titleB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  while (mediaSection.firstChild) {
+    mediaSection.removeChild(mediaSection.firstChild);
+  }
+
+  mediaElements.forEach(element => {
+    mediaSection.appendChild(element);
+  });
+}
+
+const dateButton = document.getElementById("date");
+dateButton.addEventListener("click", sortMediaByDate);
+
+function sortMediaByDate() {
+
+  const mediaSection = document.querySelector('.media-section');
+
+  //liste de card media
+  const mediaElements = Array.from(mediaSection.children);
+
+  mediaElements.sort((a, b) => {
+    const dateA = new Date(a.querySelector('.dateMedia').textContent);
+    const dateB = new Date(b.querySelector('.dateMedia').textContent);
+
+    return dateA - dateB;
+  });
+
+  while (mediaSection.firstChild) {
+    mediaSection.removeChild(mediaSection.firstChild);
+  }
+
+  mediaElements.forEach(element => {
+    mediaSection.appendChild(element);
+  });
+}
+
 
 
 async function init() {
