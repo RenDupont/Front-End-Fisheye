@@ -29,6 +29,7 @@ async function displayData(photographer, media) {
 
     const photographerModel = photographerFactory(photographer);
     const photographerDOM = photographerModel.getPhotographeDOM();
+    
     photographHeader.append(photographerDOM.imgPhotographe);
     photographHeader.append(photographerDOM.divDescription);
 
@@ -41,30 +42,64 @@ async function displayData(photographer, media) {
     sortMediaByLike();
 }
 
-/*function findImageIndex(listSrc, currentSrc) {
-    let index = 0;
-    listSrc.forEach(element => {
-        if (element === currentSrc) {
-            return index;
-        }
-        index++;
-    });
-}  
 
-async function gogoToNextMedia() {
-    const id = await getParams();
-    const media = await getMedia(id);
-    let currentSrcMedia = document.querySelector(".imageLightbox").getAttribute('src');
-    console.log(currentSrcMedia, "1");
+function findImageIndex(list, currentSrc) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].src === currentSrc) {
+      return i;
+    }
+  }
+  return -1;
+} 
 
-    let index = findImageIndex(listSrcMedia, currentSrcMedia);
-    console.log(listSrcMedia);
-    console.log(index);
+const nextButtonMedia = document.getElementById("right-arrow");
+const previewsButtonMedia = document.getElementById("left-arrow");
+nextButtonMedia.addEventListener("click", goToNextMedia);
+previewsButtonMedia.addEventListener("click", goToPreviewsMedia);
+
+
+function goToNextMedia() {
+  const mediaSectionTest = document.querySelector('.media-section');
+  const imgcardList = mediaSectionTest.querySelectorAll(".media-section_mediaImg");
+  let imageLightbox = document.querySelector(".imageLightbox");
+  
+  let index = findImageIndex(imgcardList, imageLightbox.src);
+  
+  if (index !== -1) {
+    let nextIndex;
+    
+    if (index === imgcardList.length - 1) {
+      // Si on est sur la dernière image, on revient à la première image
+      nextIndex = 0;
+    } else {
+      nextIndex = index + 1;
+    }
+    
+    imageLightbox.src = imgcardList[nextIndex].src;
+  }
 }
 
-function gogoToPreviewsMedia() {
-    console.log('click2');
-}*/
+function goToPreviewsMedia() {
+  const mediaSectionTest = document.querySelector('.media-section');
+  const imgcardList = mediaSectionTest.querySelectorAll(".media-section_mediaImg");
+  let imageLightbox = document.querySelector(".imageLightbox");
+
+  let index = findImageIndex(imgcardList, imageLightbox.src);
+  
+  if (index !== -1) {
+    let previousIndex;
+
+    if (index === 0) {
+      // Si on est sur la première image, on passe à la dernière image
+      previousIndex = imgcardList.length - 1;
+    } else {
+      previousIndex = index - 1;
+    }
+    
+    imageLightbox.src = imgcardList[previousIndex].src;
+  }
+}
+
 
 //mise en forme du menu de tri
 const dropBtns = document.querySelectorAll(".dropbtn");
