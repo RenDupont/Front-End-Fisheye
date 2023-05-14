@@ -5,8 +5,19 @@
         const main = document.getElementById("main");
         const body = document.body;
         const img = document.querySelector(".imageLightbox");
+        const video = document.querySelector(".videoLightbox");
+
+        if (this.tagName === "VIDEO") {
+            img.style.display = "none";
+            video.style.display = "block";
+            video.src = this.src;
+        }
+        else { //IMG
+            img.style.display = "block";
+            video.style.display = "none";
+            img.src = this.src;
+        }
     
-        img.src = this.src;
         modal.style.display = "block";
         main.setAttribute("aria-hidden", true);
         modal.setAttribute("aria-hidden", false);

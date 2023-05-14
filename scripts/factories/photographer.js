@@ -71,29 +71,46 @@ function photographerFactory(data) {
         return {divDescription, imgPhotographe};
     }
 
-    return { name, picture, getUserCardDOM, getPhotographeDOM }
+    return { price, getUserCardDOM, getPhotographeDOM }
 }
 
 function mediaFactory(data) {
     const { title, image, video, likes, date } = data;
 
     let picture;
-
     let media;
-    if(data.hasOwnProperty('image')) {
-        picture = `../../assets/images/media/${image}`;
-        media = document.createElement( 'img' );
-        media.setAttribute("src", picture);
-        media.setAttribute("alt", "");
-    }
-    else if(data.hasOwnProperty('video')) {
-        picture = `../../assets/images/media/${video}`;
-        media = document.createElement('video');
-        media.setAttribute("src", picture);
-        media.controls = true;
+    let isLiked = false;
+
+    function incLike(event) {
+
+        if (!isLiked) {
+            const likeNumber = event.target.closest('.media-like').querySelector('.numLikeMedia');
+            let incNumber = parseInt(likeNumber.textContent);
+            incNumber++;
+            likeNumber.textContent = incNumber;
+    
+            isLiked = true;
+
+            event.target.removeEventListener('click', incLike);
+
+            updateTotalLike(); 
+        }
     }
 
     function getMediaCardDOM() {
+
+        if(data.hasOwnProperty('image')) {
+            picture = `../../assets/images/media/${image}`;
+            media = document.createElement( 'img' );
+            media.setAttribute("src", picture);
+            media.setAttribute("alt", "");
+        }
+        else if(data.hasOwnProperty('video')) {
+            picture = `../../assets/images/media/${video}`;
+            media = document.createElement('video');
+            media.setAttribute("src", picture);
+            //media.controls = true;
+        }
 
         const article = document.createElement( 'article' );
         const spanName = document.createElement('span');
@@ -109,15 +126,17 @@ function mediaFactory(data) {
         spanDate.textContent = date;
         spanLikeNumber.textContent = likes;
 
-        iconLike.classList.add('fas', 'fa-heart');
+        iconLike.classList.add('fas', 'fa-heart', 'likeIcon');
         media.classList.add("media-section_mediaImg");
         divDescription.classList.add("media-description");
         divLike.classList.add("media-like");
         media.classList.add("lightbox-link");
-        media.addEventListener('click', displayMediaModal);
         spanLikeNumber.classList.add('numLikeMedia');
         spanDate.classList.add('dateMedia');
         spanName.classList.add('mediaName');
+
+        media.addEventListener('click', displayMediaModal);
+        iconLike.addEventListener('click', incLike);
 
         divDescription.appendChild(spanName);
         divDescription.appendChild(spanDate);
@@ -130,5 +149,5 @@ function mediaFactory(data) {
         return (article);
     }
 
-    return { getMediaCardDOM, image }
+    return { getMediaCardDOM, image, likes }
 }

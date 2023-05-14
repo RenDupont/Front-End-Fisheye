@@ -1,7 +1,5 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-//let listSrcMedia = [];
-
 async function getParams() {
     let urlParams = window.location.search;
     params = new URLSearchParams(urlParams);
@@ -26,26 +24,42 @@ async function getMedia(id) {
 async function displayData(photographer, media) {
     const photographHeader = document.querySelector(".photograph-header");
     const mediaSection = document.querySelector('.media-section');
+    let price = 0;
+    let totalLikeInitial = 0;
+    const initialTotalLike = document.querySelector('.totalLike');
+    const photographerPrice = document.querySelector('.pricePhotographe');
 
     const photographerModel = photographerFactory(photographer);
     const photographerDOM = photographerModel.getPhotographeDOM();
-    
+    price = photographerModel.price;
+
     photographHeader.append(photographerDOM.imgPhotographe);
     photographHeader.append(photographerDOM.divDescription);
 
     media.forEach(element => {
         const mediaModel = mediaFactory(element);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
-        //listSrcMedia.push(mediaModel.image);
+        totalLikeInitial += mediaModel.likes;
         mediaSection.appendChild(mediaCardDOM);
     });
+
+    photographerPrice.textContent = price + "€ / jour";
+    initialTotalLike.textContent = totalLikeInitial;
     sortMediaByLike();
 }
 
-
-function findImageIndex(list, currentSrc) {
+/*function findMediaIndex(list, currentImgSrc, currentvidSrc) {
   for (let i = 0; i < list.length; i++) {
-    if (list[i].src === currentSrc) {
+    if (list[i].src === currentImgSrc || list[i].src === currentvidSrc) {
+      return i;
+    }
+  }
+  return -1;
+}*/
+
+function findMediaIndex(list, currentImgSrc) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].src === currentImgSrc) {
       return i;
     }
   }
@@ -59,44 +73,82 @@ previewsButtonMedia.addEventListener("click", goToPreviewsMedia);
 
 
 function goToNextMedia() {
-  const mediaSectionTest = document.querySelector('.media-section');
-  const imgcardList = mediaSectionTest.querySelectorAll(".media-section_mediaImg");
+  const mediaSection = document.querySelector('.media-section');
+  const imgcardList = mediaSection.querySelectorAll(".media-section_mediaImg");
   let imageLightbox = document.querySelector(".imageLightbox");
+  let videoLightbox = document.querySelector(".videoLightbox");
   
-  let index = findImageIndex(imgcardList, imageLightbox.src);
+  //let index = findMediaIndex(imgcardList, imageLightbox.src, videoLightbox.src);
+  let index = findMediaIndex(imgcardList, imageLightbox.src);
   
   if (index !== -1) {
     let nextIndex;
     
     if (index === imgcardList.length - 1) {
-      // Si on est sur la dernière image, on revient à la première image
+      //si dernière image, on revient à la première image
       nextIndex = 0;
     } else {
       nextIndex = index + 1;
     }
     
     imageLightbox.src = imgcardList[nextIndex].src;
+
+    /*const nextMedia = imgcardList[nextIndex];
+    console.log(nextMedia, '1');
+    
+    if (nextMedia.tagName === 'IMG') {
+
+      imageLightbox.style.display = "block";
+      videoLightbox.style.display = "none";
+      
+      imageLightbox.src = nextMedia.src;
+    } else if (nextMedia.tagName === 'VIDEO') {
+
+      imageLightbox.style.display = "none";
+      videoLightbox.style.display = "block";
+    
+      videoLightbox.src = nextMedia.src;
+    }*/
   }
 }
 
 function goToPreviewsMedia() {
-  const mediaSectionTest = document.querySelector('.media-section');
-  const imgcardList = mediaSectionTest.querySelectorAll(".media-section_mediaImg");
+  const mediaSection = document.querySelector('.media-section');
+  const imgcardList = mediaSection.querySelectorAll(".media-section_mediaImg");
   let imageLightbox = document.querySelector(".imageLightbox");
-
-  let index = findImageIndex(imgcardList, imageLightbox.src);
+  let videoLightbox = document.querySelector(".videoLightbox");
+  
+  //let index = findMediaIndex(imgcardList, imageLightbox.src, videoLightbox.src);
+  let index = findMediaIndex(imgcardList, imageLightbox.src);
   
   if (index !== -1) {
     let previousIndex;
 
     if (index === 0) {
-      // Si on est sur la première image, on passe à la dernière image
+      //si première image, on passe à la dernière image
       previousIndex = imgcardList.length - 1;
     } else {
       previousIndex = index - 1;
     }
     
     imageLightbox.src = imgcardList[previousIndex].src;
+    
+    /*const nextMedia = imgcardList[previousIndex];
+    console.log(nextMedia, '1');
+    
+    if (nextMedia.tagName === 'IMG') {
+
+      imageLightbox.style.display = "block";
+      videoLightbox.style.display = "none";
+      
+      imageLightbox.src = nextMedia.src;
+    } else if (nextMedia.tagName === 'VIDEO') {
+
+      imageLightbox.style.display = "none";
+      videoLightbox.style.display = "block";
+    
+      videoLightbox.src = nextMedia.src;
+    }*/
   }
 }
 
@@ -203,22 +255,26 @@ function sortMediaByDate() {
   });
 }
 
+function updateTotalLike() {
+  const totalLike = document.querySelector('.totalLike');
+  const mediaSection = document.querySelector('.media-section');
+  const mediaElements = Array.from(mediaSection.children);
+  let total = 0;
 
+  mediaElements.forEach( card => {
+      const likeNumber = card.querySelector('.numLikeMedia');
+      total += parseInt(likeNumber.textContent);
+  });
+
+  totalLike.textContent = total;
+}
 
 async function init() {
     const id = await getParams();
     const media = await getMedia(id);
     const photographer = await getPhotographer(id);
-
-    //const nextButtonMedia = document.getElementById("right-arrow");
-    //const previewsButtonMedia = document.getElementById("left-arrow");
     
     displayData(photographer, media);
-
-    //nextButtonMedia.addEventListener("click", gogoToNextMedia);
-    //previewsButtonMedia.addEventListener("click", gogoToPreviewsMedia);
-
-
 };
 
 init();
