@@ -26,39 +26,25 @@ function closeWithKeyDown(event) {
     }
 }
 
-/*async function getParams() {
-    let urlParams = window.location.search;
-    params = new URLSearchParams(urlParams);
-    let id = parseInt(params.get('id'));
-    return id;
-}
-
-async function getPhotographerName(id) {     
-    const response = await fetch("../../data/photographers.json");
-    const data = await response.json();
-    const photographer = data.photographers.find(photographers => photographers.id === id);
-    return photographer.name;
-}
-
-function setPhotographerName(name) {
-    const modalName = document.querySelector(".nameModal");
-    modalName.textContent += " "+name;
-}
-
-async function init() {
-    const id = await getParams();
-    const photographerName = await getPhotographerName(id);
-    console.log(photographerName);
-    setPhotographerName(photographerName);
-}
-
-init();*/
 
 //DOM
 const modalButton = document.querySelector(".contact_button");
 const modalClose = document.querySelector(".closeContact");
+const form = document.querySelector(".formContact");
 
 //event
 modalButton.addEventListener("click", displayModal);
 modalClose.addEventListener("click", closeModal);
 document.addEventListener("keydown", closeWithKeyDown);
+
+form.onsubmit = function (event) {
+    event.preventDefault();
+
+    const inputs = document.querySelectorAll(".formData input");
+
+    inputs.forEach(element => {
+        console.log(element.value);
+    });
+
+    closeModal();
+}
