@@ -41,10 +41,14 @@ form.onsubmit = function (event) {
     event.preventDefault();
 
     const inputs = document.querySelectorAll(".formData input");
+    const inputMessage = document.getElementById("message");
 
     inputs.forEach(element => {
         console.log(element.value);
     });
+    console.log(inputMessage.value);
 
     closeModal();
 }
+
+// add contenLoad

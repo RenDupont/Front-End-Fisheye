@@ -52,12 +52,12 @@
 
     document.addEventListener("keydown", function(event) {
         if(event.key === "ArrowLeft") {
-            goToPreviewsMedia();
+            goToMedia('previous');
         }
       });
       
     document.addEventListener("keydown", function(event) {
         if (event.key === "ArrowRight") {
-            goToNextMedia();
+            goToMedia('next');
         }
     });

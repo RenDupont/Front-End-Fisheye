@@ -55,6 +55,7 @@ function photographerFactory(data) {
         const spanTagline = document.createElement('span');
 
         imgPhotographe.setAttribute("src", picture);
+        imgPhotographe.setAttribute("alt", name);
         h1.textContent = name;
         localisation.textContent = `${city}, ${country}`;
         spanTagline.textContent = tagline;
@@ -71,7 +72,7 @@ function photographerFactory(data) {
         return {divDescription, imgPhotographe};
     }
 
-    return { price, getUserCardDOM, getPhotographeDOM }
+    return { name, price, getUserCardDOM, getPhotographeDOM }
 }
 
 function mediaFactory(data) {
