@@ -104,13 +104,13 @@ function mediaFactory(data) {
             picture = `../../assets/images/media/${image}`;
             media = document.createElement( 'img' );
             media.setAttribute("src", picture);
-            media.setAttribute("alt", "");
+            media.setAttribute("alt", title + ", closeup view");
         }
         else if(data.hasOwnProperty('video')) {
             picture = `../../assets/images/media/${video}`;
             media = document.createElement('video');
             media.setAttribute("src", picture);
-            //media.controls = true;
+            media.setAttribute("alt", title + ", closeup view");
         }
 
         const article = document.createElement( 'article' );
@@ -123,6 +123,7 @@ function mediaFactory(data) {
 
         media.setAttribute("focusable", true);
         media.setAttribute("role", "link");
+        divLike.setAttribute("aria-label", "likes");
         spanName.textContent = title;
         spanDate.textContent = date;
         spanLikeNumber.textContent = likes;
