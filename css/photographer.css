@@ -207,6 +207,11 @@
     margin-top: 26px;
 }
 
+.contact_button:hover {
+    background-color: #D3573C;
+    color: black;
+}
+
 .contact-modalContent {
     border-radius: 5px;
     background-color: #DB8876;
