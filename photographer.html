@@ -19,12 +19,12 @@
         <button class="contact_button" aria-label="Contact Me">Contactez-moi</button>
       </div>
       <div class="sortMedia">
-        <h2>Trier par</h2>
+        <h2 id="sortLabel">Trier par</h2>
         <div class="dropdown">
-          <button id="popularite" class="dropbtn dropbtnRadiusDefault">Popularité</button>
-          <div id="pop" class="dropdown-content">
-            <button id="date" class="dropbtn">Date</a>
-            <button id="titre" class="dropbtn">Titre</a>
+          <button id="popularite" class="dropbtn dropbtnRadiusDefault" role="button" aria-haspopup="listbox" aria-expanded="false">Popularité</button>
+          <div id="pop" class="dropdown-content" role="listbox" aria-labelledby="sortLabel">
+            <button id="date" class="dropbtn" role="option" aria-selected="false">Date</button>
+            <button id="titre" class="dropbtn" role="option" aria-selected="false">Titre</button>
           </div>
         </div>
       </div>
