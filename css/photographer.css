@@ -136,6 +136,7 @@
     font-size: 18px;
     line-height: 23px;
     text-align: left;
+    cursor: pointer;
 }
   
 .dropdown {
@@ -190,6 +191,7 @@
 
 .media-like i {
     padding-left: 6px;
+    cursor: pointer;
 }
 
 .contact_button {
