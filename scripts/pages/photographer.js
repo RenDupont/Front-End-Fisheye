@@ -146,6 +146,15 @@ dropBtns.forEach(function(btn) {
     });
 });
 
+function clearAndAppendElements(parentElement, elements) {
+  while (parentElement.firstChild) {
+    parentElement.removeChild(parentElement.firstChild);
+  }
+
+  elements.forEach(element => {
+    parentElement.appendChild(element);
+  });
+}
 
 //tri par nombre de like
 const popularityButton = document.getElementById("popularite");
@@ -164,13 +173,7 @@ function sortMediaByLike() {
     return valueA - valueB;
   });
 
-  while (mediaSection.firstChild) {
-    mediaSection.removeChild(mediaSection.firstChild);
-  }
-
-  mediaElements.forEach(element => {
-    mediaSection.appendChild(element);
-  });
+  clearAndAppendElements(mediaSection, mediaElements);
 }
 
 //tri par titre
@@ -197,13 +200,7 @@ function sortMediaByTitle() {
     }
   });
 
-  while (mediaSection.firstChild) {  //create function
-    mediaSection.removeChild(mediaSection.firstChild);
-  }
-
-  mediaElements.forEach(element => {
-    mediaSection.appendChild(element);
-  });
+  clearAndAppendElements(mediaSection, mediaElements);
 }
 
 //tri par date
@@ -224,13 +221,7 @@ function sortMediaByDate() {
     return dateA - dateB;
   });
 
-  while (mediaSection.firstChild) {
-    mediaSection.removeChild(mediaSection.firstChild);
-  }
-
-  mediaElements.forEach(element => {
-    mediaSection.appendChild(element);
-  });
+  clearAndAppendElements(mediaSection, mediaElements);
 }
 
 
