@@ -87,7 +87,7 @@ function getPreviousIndex(index, imgcardList) {
   }
 }
 
-function goToMedia(direction) { //correct name
+function goToMedia(direction) {
   const mediaSection = document.querySelector('.media-section');
   const imgcardList = mediaSection.querySelectorAll(".media-section_mediaImg");
   let imageLightbox = document.querySelector(".imageLightbox");
