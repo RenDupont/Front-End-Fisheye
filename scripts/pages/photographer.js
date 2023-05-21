@@ -50,6 +50,24 @@ async function displayData(photographer, media) { //change name
     sortMediaByLike();
 }
 
+
+const nextButtonMedia = document.getElementById("right-arrow");
+const previewsButtonMedia = document.getElementById("left-arrow");
+
+nextButtonMedia.addEventListener("click", function() {
+  switchMedia("next")
+});
+previewsButtonMedia.addEventListener("click", function() {
+  switchMedia("previous")
+});
+
+
+/**
+ * trouve l'index du media courrant 
+ * @param {NodeList} list 
+ * @param {string} currentImgSrc 
+ * @returns number
+ */
 function findMediaIndex(list, currentImgSrc) {
   for (let i = 0; i < list.length; i++) {
     if (list[i].src === currentImgSrc) {
@@ -59,25 +77,28 @@ function findMediaIndex(list, currentImgSrc) {
   return -1;
 }
 
-const nextButtonMedia = document.getElementById("right-arrow");
-const previewsButtonMedia = document.getElementById("left-arrow");
-
-nextButtonMedia.addEventListener("click", function() {
-  goToMedia("next")
-});
-previewsButtonMedia.addEventListener("click", function() {
-  goToMedia("previous")
-});
-
+/**
+ * obtenir l'index suivant de la liste
+ * @param {number} index 
+ * @param {NodeList} imgcardList 
+ * @returns number
+ */
 function getNextIndex(index, imgcardList) {
   if (index === imgcardList.length - 1) {
     //si dernière image, on revient à la première image
     return 0;
   } else {
     return index + 1;
+
   }
 }
 
+/**
+ * obtenir l'index precedant de la liste
+ * @param {number} index 
+ * @param {NodeList} imgcardList 
+ * @returns number
+ */
 function getPreviousIndex(index, imgcardList) {
   if (index === 0) {
     //si première image, on passe à la dernière image
@@ -87,13 +108,13 @@ function getPreviousIndex(index, imgcardList) {
   }
 }
 
-function goToMedia(direction) {
+//change de media dans la lightbox en fonction du bouton cliqué 
+function switchMedia(direction) {
   const mediaSection = document.querySelector('.media-section');
   const imgcardList = mediaSection.querySelectorAll(".media-section_mediaImg");
   let imageLightbox = document.querySelector(".imageLightbox");
   let videoLightbox = document.querySelector(".videoLightbox");
   
-  //let index = findMediaIndex(imgcardList, imageLightbox.src, videoLightbox.src);
   let index = findMediaIndex(imgcardList, imageLightbox.src || videoLightbox.src);
   
   if (index !== -1) {
@@ -143,6 +164,7 @@ dropBtns.forEach(function(btn) {
     });
 });
 
+//suprime la liste précédente et met en place la nouvelle liste trié 
 function clearAndAppendElements(parentElement, elements) {
   while (parentElement.firstChild) {
     parentElement.removeChild(parentElement.firstChild);

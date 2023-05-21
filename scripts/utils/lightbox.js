@@ -46,18 +46,17 @@
     const modalLightboxClose = document.querySelector(".closeLightbox");
     
     //event
-    //modalLightbox.addEventListener("click", displayModal);    in photographer.js
     modalLightboxClose.addEventListener("click", closeMediaModal);
     document.addEventListener("keydown", closeWithKeyDown);
 
     document.addEventListener("keydown", function(event) {
         if(event.key === "ArrowLeft") {
-            goToMedia('previous');
+            switchMedia('previous');
         }
       });
       
     document.addEventListener("keydown", function(event) {
         if (event.key === "ArrowRight") {
-            goToMedia('next');
+            switchMedia('next');
         }
     });
