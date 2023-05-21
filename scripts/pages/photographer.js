@@ -99,9 +99,7 @@ function goToMedia(direction) {
   if (index !== -1) {
     let newIndex
 
-    console.log(direction);
     if(direction === "next") {
-      console.log('next');
       newIndex = getNextIndex(index, imgcardList);
     }
     else {
@@ -111,7 +109,6 @@ function goToMedia(direction) {
     imageLightbox.src = imgcardList[newIndex].src;
     
     const nextMedia = imgcardList[newIndex];
-    console.log(nextMedia, '1');
     
     if (nextMedia.tagName === 'IMG') {
 
