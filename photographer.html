@@ -22,6 +22,8 @@
         <h2 id="sortLabel">Trier par</h2>
         <div class="dropdown">
           <button id="popularite" class="dropbtn dropbtnRadiusDefault" aria-haspopup="listbox" aria-expanded="false">Popularité</button>
+          <i id="dropbtn-down" class="fa-solid fa-chevron-down"></i>
+          <i id="dropbtn-up" class="fa-solid fa-chevron-up"></i>
           <div id="pop" class="dropdown-content" role="listbox" aria-labelledby="sortLabel">
             <button id="date" class="dropbtn" role="option" aria-selected="false">Date</button>
             <button id="titre" class="dropbtn" role="option" aria-selected="false">Titre</button>
@@ -77,6 +79,23 @@
         </div>
       </div>
     </div>
+    <!-- Simple text input field -->
+<div id="txtboxLabel">Enter your five-digit zipcode</div>
+<div
+  role="textbox"
+  contenteditable="true"
+  aria-placeholder="5-digit zipcode"
+  aria-labelledby="txtboxLabel"></div>
+
+<!-- Multi-line text area -->
+<div id="txtboxMultilineLabel">Enter the tags for the article</div>
+<div
+  role="textbox"
+  contenteditable="true"
+  aria-multiline="true"
+  aria-labelledby="txtboxMultilineLabel"
+  aria-required="true"></div>
+
     <script src="/scripts/utils/lightbox.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/factories/photographer.js"></script>

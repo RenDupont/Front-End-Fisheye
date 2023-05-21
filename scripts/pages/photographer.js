@@ -151,27 +151,34 @@ function switchMedia(direction) {
 //mise en forme du menu de tri
 const dropBtns = document.querySelectorAll(".dropbtn");
 const populariteBtn = document.getElementById("popularite");
+const arrowUp = document.getElementById("dropbtn-up");
+const arrowDown = document.getElementById("dropbtn-down");
 
-dropBtns.forEach(function(btn) {
+dropBtns.forEach(function(btn) { //ajoue fleche
     btn.addEventListener('mouseover', function() {
       populariteBtn.classList.remove('dropbtnRadiusDefault');
       populariteBtn.classList.add('dropbtnHovered');
+      arrowUp.style.display = "none";
+      arrowDown.style.display = "block";
     });
   
     btn.addEventListener('mouseout', function() {
       populariteBtn.classList.remove('dropbtnHovered');
       populariteBtn.classList.add('dropbtnRadiusDefault');
+      arrowDown.style.display = "none";
+      arrowUp.style.display = "block";
     });
 });
 
 //suprime la liste précédente et met en place la nouvelle liste trié 
-function clearAndAppendElements(parentElement, elements) {
-  while (parentElement.firstChild) {
-    parentElement.removeChild(parentElement.firstChild);
+function clearAndAppendElements(elements) {
+  const mediaSection = document.querySelector('.media-section');
+  while (mediaSection.firstChild) {
+    mediaSection.removeChild(mediaSection.firstChild);
   }
 
   elements.forEach(element => {
-    parentElement.appendChild(element);
+    mediaSection.appendChild(element);
   });
 }
 
@@ -192,7 +199,7 @@ function sortMediaByLike() {
     return valueA - valueB;
   });
 
-  clearAndAppendElements(mediaSection, mediaElements);
+  clearAndAppendElements(mediaElements);
 }
 
 //tri par titre
@@ -219,7 +226,7 @@ function sortMediaByTitle() {
     }
   });
 
-  clearAndAppendElements(mediaSection, mediaElements);
+  clearAndAppendElements(mediaElements);
 }
 
 //tri par date
@@ -240,7 +247,7 @@ function sortMediaByDate() {
     return dateA - dateB;
   });
 
-  clearAndAppendElements(mediaSection, mediaElements);
+  clearAndAppendElements(mediaElements);
 }
 
 

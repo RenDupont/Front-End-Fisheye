@@ -82,6 +82,7 @@ function mediaFactory(data) {
     let media;
     let isLiked = false;
 
+    //increase like number when like icon is clicked
     function incLike(event) {
 
         if (!isLiked) {
@@ -98,6 +99,7 @@ function mediaFactory(data) {
         }
     }
 
+    //same as getUserCardDOM but for media-section
     function getMediaCardDOM() {
 
         if(data.hasOwnProperty('image')) {

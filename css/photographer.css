@@ -143,6 +143,16 @@
     position: relative;
     display: inline-block;
 }
+
+.dropdown i {
+    position: absolute;
+    right: 20px;
+    top: 26px;
+}
+
+#dropbtn-down {
+    display: none;
+}
   
 .dropdown-content {
     display: none;
@@ -160,7 +170,8 @@
 }
   
 .dropbtn:hover {
-    opacity: 0.4;
+    background-color: #D3573C;
+    color: black;
 }
 
 .dropbtnRadiusDefault {
