@@ -5,33 +5,63 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/72fe784e3f.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
-  <body>
+  <body>    
     <header>
-      <img src="assets/images/logo.png" class="logo" alt="logo du site">
+      <a href="index.html" focusable="true">
+        <img src="assets/images/logo.png" class="logo" alt="logo du site">
+      </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button">Contactez-moi</button>
       </div>
+      <section class="media-section"></section>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
+    <div id="contact_modal" aria-hidden="true" role="dialog">
+			<div class="contact-modalContent">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" >
+          <div class="nameModal" role="heading">
+            <h2>Contactez-moi</h2>
+          </div>
+          <img class="closeContact" src="assets/icons/close.svg" role="button">
         </header>
 				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
+					<div class="formData">
+						<label for="first" role="label">Prénom</label>
+						<input id="first" type="text" name="first" role="textbox" required>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <div class="formData">
+						<label for="last" role="label">Nom</label>
+						<input id="last" type="text" name="last" role="textbox" required>
+					</div>
+          <div class="formData">
+						<label for="email" role="label">Email</label>
+						<input id="email" type="text" name="email" role="textbox" required>
+					</div>
+          <div class="formData">
+						<label for="message" role="label">Votre message</label>
+						<input id="message" type="text" name="" role="textbox" required>
+					</div>
+          <button class="contact_button" role="button">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="lightbox_modal" aria-hidden="true" role="dialog">
+      <div class="lightbox-modalContent">
+        <img class="closeLightbox" src="assets/icons/close.svg" role="button">
+        <div>
+          <img class="controlArrow" src="assets/icons/left-arrow.svg" role="button">
+          <img class="imageLightbox" alt="">
+          <img class="controlArrow" src="assets/icons/right-arrow.svg" role="button">
+        </div>
+      </div>
+    </div>
+    <script src="/scripts/utils/lightbox.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
+    <script src="/scripts/factories/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

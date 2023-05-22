@@ -1,11 +1,115 @@
 #contact_modal {
     display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background: rgba(196, 196, 196, 0.4);
 }
+
+#lightbox_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background: white;
+}
+
+#message {
+    height: 170px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.no-scroll {
+    overflow: hidden;
+ }
 
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px 0 50px;
+
+}
+
+.photograph-header_portrait {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    order: 3;
+}
+
+.photograph-header_description {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.photograph-header_description h1 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 83px;
+    color: #D3573C;
+}
+
+.photograph-header_localisation {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    color: #901C1C;
+}
+
+.photograph-header_tagline {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #525252;
+}
+
+.media-section {
+    /*display: grid;
+    grid-template-columns: 1fr 1fr 1fr;*/
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.media-section_mediaImg {
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.media-description {
+    display: flex;
+    justify-content: space-between;
+    color: #901C1C;
+}
+
+.media-like i {
+    padding-left: 6px;
 }
 
 .contact_button {
@@ -19,9 +123,11 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    order: 2;
+    margin-top: 26px;
 }
 
-.modal {
+.contact-modalContent {
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
@@ -30,19 +136,20 @@
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    margin: 5% auto;
+    max-width: 669px;
 }
 
-.modal header {
+.contact-modalContent header {
     justify-content: space-between;
     width: 100%;
 }
 
-.modal header img {
+.closeContact {
     cursor: pointer;
 }
 
-.modal header h2 {
+.contact-modalContent header h2 {
     font-size: 64px;
     font-weight: normal;
     text-align: center;
@@ -60,12 +167,11 @@ form label {
     font-size: 36px;
 }
 
-form div {
+.formData {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
 }
 
 form input {
@@ -73,4 +179,46 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.lightbox-modalContent {
+    /*
+    *temporary
+    */
+    border-radius: 5px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: 5% auto;
+    max-width: 1253px;
+}
+
+.lightbox-modalContent div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeLightbox {
+    cursor: pointer;
+    fill: #911C1C;
+    position: absolute;
+    right: 15%;
+    top: 12%;
+    height: 42px;
+    width: 42px;
+}
+
+.imageLightbox {
+    max-width: 1050px;
+    height: 900px;
+}
+
+.controlArrow {
+    height: 30px;
+    width: 48px;
+    cursor: pointer;
 }
