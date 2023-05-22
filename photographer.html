@@ -10,52 +10,72 @@
   </head>
   <body>    
     <header>
-      <a href="index.html" focusable="true">
-        <img src="assets/images/logo.png" class="logo" alt="logo du site">
+      <a href="index.html" aria-label="Lien vers la page d'accueil Fisheye">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
       </a>
     </header>
     <main id="main" aria-hidden="false">
       <div class="photograph-header">
-        <button class="contact_button">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contact Me">Contactez-moi</button>
+      </div>
+      <div class="sortMedia">
+        <h2 id="sortLabel">Trier par</h2>
+        <div class="dropdown">
+          <button id="popularite" class="dropbtn dropbtnRadiusDefault" aria-haspopup="listbox" aria-expanded="false">Popularité</button>
+          <em id="dropbtn-down" class="fa-solid fa-chevron-down"></em>
+          <em id="dropbtn-up" class="fa-solid fa-chevron-up"></em>
+          <div id="pop" class="dropdown-content" role="listbox" aria-labelledby="sortLabel">
+            <button id="date" class="dropbtn" role="option" aria-selected="false">Date</button>
+            <button id="titre" class="dropbtn" role="option" aria-selected="false">Titre</button>
+          </div>
+        </div>
       </div>
       <section class="media-section"></section>
+      <div class="priceAndLike">
+        <div>
+          <span class="totalLike"></span>
+          <em class="fas fa-heart"></em>
+        </div>
+        <span class="pricePhotographe"></span>
+      </div>
     </main>
-    <div id="contact_modal" aria-hidden="true" role="dialog">
+    <div id="contact_modal" aria-hidden="true" role="dialog" aria-labelledby="contact_heading">
 			<div class="contact-modalContent">
 				<header>
           <div class="nameModal" role="heading">
-            <h2>Contactez-moi</h2>
+            <h2 id="contact_heading">Contactez-moi</h2>
           </div>
-          <img class="closeContact" src="assets/icons/close.svg" role="button">
+          <img class="closeContact" src="assets/icons/close.svg" role="button" alt="close button">
         </header>
-				<form>
+				<form class="formContact">
 					<div class="formData">
-						<label for="first" role="label">Prénom</label>
-						<input id="first" type="text" name="first" role="textbox" required>
+						<label for="first">Prénom</label>
+						<input id="first" type="text" name="first" required>
 					</div>
           <div class="formData">
-						<label for="last" role="label">Nom</label>
-						<input id="last" type="text" name="last" role="textbox" required>
+						<label for="last">Nom</label>
+						<input id="last" type="text" name="last" required>
 					</div>
           <div class="formData">
-						<label for="email" role="label">Email</label>
-						<input id="email" type="text" name="email" role="textbox" required>
+						<label for="email">Email</label>
+						<input id="email" type="text" name="email" required>
 					</div>
           <div class="formData">
-						<label for="message" role="label">Votre message</label>
-						<input id="message" type="text" name="" role="textbox" required>
+						<label for="message">Votre message</label>
+            <textarea id="message" name="message" required></textarea>
 					</div>
-          <button class="contact_button" role="button">Envoyer</button>
+          <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <div id="lightbox_modal" aria-hidden="true" role="dialog">
       <div class="lightbox-modalContent">
-        <img class="closeLightbox" src="assets/icons/close.svg" role="button">
+        <img id="left-arrow" class="controlArrow" src="assets/icons/left-arrow.svg" role="link" alt="left arrow">
+        <img class="imageLightbox" src="#" alt="">
+        <video class="videoLightbox" controls></video>
         <div>
-          <img class="controlArrow" src="assets/icons/left-arrow.svg" role="button">
-          <img class="imageLightbox" alt="">
-          <img class="controlArrow" src="assets/icons/right-arrow.svg" role="button">
+          <img class="closeLightbox" src="assets/icons/close.svg" role="button" alt="close button">
+          <img id="right-arrow" class="controlArrow" src="assets/icons/right-arrow.svg" role="link" alt="right arrow">
         </div>
       </div>
     </div>
