@@ -200,7 +200,7 @@
     display: none;
 }
 
-.media-like i {
+.media-like em {
     padding-left: 6px;
     cursor: pointer;
 }
