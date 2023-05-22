@@ -36,8 +36,8 @@
 
 #date {
     border-radius: 0;
-    border-top: 2px solid #FFFFFF;
-    border-bottom: 2px solid #FFFFFF;
+    border-top: 1.5px solid #FFF;
+    border-bottom: 1.5px solid #FFF;
 }
 
 #titre {
@@ -144,7 +144,7 @@
     display: inline-block;
 }
 
-.dropdown i {
+.dropdown em {
     position: absolute;
     right: 20px;
     top: 26px;
