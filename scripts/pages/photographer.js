@@ -106,6 +106,13 @@ function getPreviousIndex (index, imgcardList) {
   }
 }
 
+function updatedLightboxTitle (mediaOrTitle) {
+  const nameMediaLightbox = document.getElementById('nameMediaLightbox');
+  const updatedTitle = mediaOrTitle.replace(/, closeup view$/, '');
+
+  nameMediaLightbox.textContent = updatedTitle;
+}
+
 // change de media dans la lightbox en fonction du bouton cliqué
 function switchMedia (direction) {
   const mediaSection = document.querySelector('.media-section');
@@ -127,6 +134,8 @@ function switchMedia (direction) {
     imageLightbox.src = imgcardList[newIndex].src;
 
     const nextMedia = imgcardList[newIndex];
+
+    updatedLightboxTitle(imgcardList[newIndex].alt || imgcardList[newIndex].title);
 
     if (nextMedia.tagName === 'IMG') {
       imageLightbox.style.display = 'block';

@@ -112,7 +112,7 @@ function mediaFactory (data) {
       picture = `../../assets/images/media/${video}`;
       media = document.createElement('video');
       media.setAttribute('src', picture);
-      media.setAttribute('alt', `${title}, closeup view`);
+      media.setAttribute('title', `${title}, closeup view`);
     }
 
     const article = document.createElement('article');
@@ -154,5 +154,5 @@ function mediaFactory (data) {
     return (article);
   }
 
-  return { getMediaCardDOM, image, likes };
+  return { getMediaCardDOM, image, likes, title };
 }

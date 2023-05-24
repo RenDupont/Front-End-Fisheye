@@ -44,6 +44,15 @@
     border-radius: 0 0 5px 5px;
 }
 
+#divMedia {
+    width: 100%;
+}
+
+#nameMediaLightbox {
+    margin: 12px 0 0 0;
+    color:#901C1C;
+}
+
 .no-scroll {
     overflow: hidden;
  }
@@ -322,7 +331,7 @@ form input {
 
 .imageLightbox {
     max-width: 1050px;
-    width: 80%;
+    width: 100%;
     height: 850px;
     object-fit: cover;
 }
@@ -330,7 +339,7 @@ form input {
 .videoLightbox {
     display: none;
     max-width: 1050px;
-    width: 80%;
+    width: 100%;
 }
 
 .controlArrow {
