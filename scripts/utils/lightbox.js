@@ -1,4 +1,7 @@
 
+/**
+ * open lightbox
+ */
 // eslint-disable-next-line no-unused-vars
 function displayMediaModal () {
   const modal = document.getElementById('lightbox_modal');
@@ -26,13 +29,15 @@ function displayMediaModal () {
   }
 
   nameMediaLightbox.textContent = updatedTitle;
-  console.log(this);
   modal.style.display = 'block';
   main.setAttribute('aria-hidden', true);
   modal.setAttribute('aria-hidden', false);
   body.classList.add('no-scroll');
 }
 
+/**
+ * close lightbox
+ */
 function closeMediaModal () {
   const modal = document.getElementById('lightbox_modal');
   const main = document.getElementById('main');
@@ -44,6 +49,10 @@ function closeMediaModal () {
   body.classList.remove('no-scroll');
 }
 
+/**
+ * close lighbox with escape key
+ * @param {*} event
+ */
 function closeWithKeyDown (event) {
   if (event.key === 'Escape') {
     closeMediaModal();

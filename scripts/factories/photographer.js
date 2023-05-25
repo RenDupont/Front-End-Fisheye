@@ -1,3 +1,8 @@
+/**
+ * factory function for index.html and photograph-header in photographer.html
+ * @param {object} data
+ * @returns string, number, function
+ */
 // eslint-disable-next-line no-unused-vars
 function photographerFactory (data) {
   const { name, id, city, country, tagline, price, portrait } = data;
@@ -46,7 +51,7 @@ function photographerFactory (data) {
 
   /**
      * create description and portrait for photograph-header in photographer.html
-     * @returns
+     * @returns div img
      */
   function getPhotographeDOM () {
     const divDescription = document.createElement('div');
@@ -76,6 +81,11 @@ function photographerFactory (data) {
   return { name, price, getUserCardDOM, getPhotographeDOM };
 }
 
+/**
+ * factory function for photographer.html
+ * @param {object} data
+ * @returns function, img, number, string
+ */
 // eslint-disable-next-line no-unused-vars
 function mediaFactory (data) {
   const { title, image, video, likes, date } = data;
@@ -84,7 +94,10 @@ function mediaFactory (data) {
   let media;
   let isLiked = false;
 
-  // increase like number when like icon is clicked
+  /**
+   * increase the number of like of a media and the total number of like
+   * @param {*} event
+   */
   function incLike (event) {
     if (!isLiked) {
       const likeNumber = event.target.closest('.media-like').querySelector('.numLikeMedia');
@@ -101,7 +114,10 @@ function mediaFactory (data) {
     }
   }
 
-  // same as getUserCardDOM but for media-section
+  /**
+   * create media card for media-section in photographer.js
+   * @returns article
+   */
   function getMediaCardDOM () {
     if (Object.prototype.hasOwnProperty.call(data, 'image')) {
       picture = `../../assets/images/media/${image}`;
