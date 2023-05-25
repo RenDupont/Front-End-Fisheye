@@ -1,4 +1,8 @@
 
+/**
+ * get parameter in url
+ * @returns number
+ */
 async function getParams () {
   const urlParams = window.location.search;
   const params = new URLSearchParams(urlParams);
@@ -6,6 +10,11 @@ async function getParams () {
   return id;
 }
 
+/**
+ * get photographer information (name, price, portrait ect) from photographers.json by his id
+ * @param {number} id
+ * @returns object
+ */
 async function getPhotographer (id) {
   const response = await fetch('../../data/photographers.json');
   const data = await response.json();
@@ -13,6 +22,11 @@ async function getPhotographer (id) {
   return photographer;
 }
 
+/**
+ * get all images and video of a photographer from photographers.json by his id
+ * @param {number} id
+ * @returns array of object
+ */
 async function getMedia (id) {
   const response = await fetch('../../data/photographers.json');
   const data = await response.json();
@@ -20,6 +34,11 @@ async function getMedia (id) {
   return media;
 }
 
+/**
+ * display photographer information in photograph-header and all media in media-section
+ * @param {object} photographer
+ * @param {Array} media
+ */
 async function displayData (photographer, media) {
   const photographHeader = document.querySelector('.photograph-header');
   const mediaSection = document.querySelector('.media-section');
@@ -106,7 +125,21 @@ function getPreviousIndex (index, imgcardList) {
   }
 }
 
-// change de media dans la lightbox en fonction du bouton cliqué
+/**
+ * update the title of the dipslay media in lightbox_modal when you switch media
+ * @param {string} mediaOrTitle
+ */
+function updatedLightboxTitle (mediaOrTitle) {
+  const nameMediaLightbox = document.getElementById('nameMediaLightbox');
+  const updatedTitle = mediaOrTitle.replace(/, closeup view$/, '');
+
+  nameMediaLightbox.textContent = updatedTitle;
+}
+
+/**
+ * change media in lightbox_modal on click or keydown (arrowLeft or arrowRight)
+ * @param {string} direction
+ */
 function switchMedia (direction) {
   const mediaSection = document.querySelector('.media-section');
   const imgcardList = mediaSection.querySelectorAll('.media-section_mediaImg');
@@ -128,6 +161,8 @@ function switchMedia (direction) {
 
     const nextMedia = imgcardList[newIndex];
 
+    updatedLightboxTitle(imgcardList[newIndex].alt || imgcardList[newIndex].title);
+
     if (nextMedia.tagName === 'IMG') {
       imageLightbox.style.display = 'block';
       videoLightbox.style.display = 'none';
@@ -142,13 +177,15 @@ function switchMedia (direction) {
   }
 }
 
-// mise en forme du menu de tri
+/**
+ * formatting the sorting menu
+ */
 const dropBtns = document.querySelectorAll('.dropbtn');
 const populariteBtn = document.getElementById('popularite');
 const arrowUp = document.getElementById('dropbtn-up');
 const arrowDown = document.getElementById('dropbtn-down');
 
-dropBtns.forEach(function (btn) { // ajoue fleche
+dropBtns.forEach(function (btn) {
   btn.addEventListener('mouseover', function () {
     populariteBtn.classList.remove('dropbtnRadiusDefault');
     populariteBtn.classList.add('dropbtnHovered');
@@ -164,7 +201,10 @@ dropBtns.forEach(function (btn) { // ajoue fleche
   });
 });
 
-// suprime la liste précédente et met en place la nouvelle liste trié
+/**
+ * remove the previous list and implement the newly sorted list
+ * @param {Array} elements
+ */
 function clearAndAppendElements (elements) {
   const mediaSection = document.querySelector('.media-section');
   while (mediaSection.firstChild) {
@@ -176,14 +216,16 @@ function clearAndAppendElements (elements) {
   });
 }
 
-// tri par nombre de like
+/**
+ * sort by likes
+ */
 const popularityButton = document.getElementById('popularite');
 popularityButton.addEventListener('click', sortMediaByLike);
 
 function sortMediaByLike () {
   const mediaSection = document.querySelector('.media-section');
 
-  // liste de card media
+  // list of media card
   const mediaElements = Array.from(mediaSection.children);
 
   mediaElements.sort((a, b) => {
@@ -195,14 +237,16 @@ function sortMediaByLike () {
   clearAndAppendElements(mediaElements);
 }
 
-// tri par titre
+/**
+ * sort by title
+ */
 const titleButton = document.getElementById('titre');
 titleButton.addEventListener('click', sortMediaByTitle);
 
 function sortMediaByTitle () {
   const mediaSection = document.querySelector('.media-section');
 
-  // liste de card media
+  // list of media card
   const mediaElements = Array.from(mediaSection.children);
 
   mediaElements.sort((a, b) => {
@@ -221,14 +265,16 @@ function sortMediaByTitle () {
   clearAndAppendElements(mediaElements);
 }
 
-// tri par date
+/**
+ * sort by date
+ */
 const dateButton = document.getElementById('date');
 dateButton.addEventListener('click', sortMediaByDate);
 
 function sortMediaByDate () {
   const mediaSection = document.querySelector('.media-section');
 
-  // liste de card media
+  // list of media card
   const mediaElements = Array.from(mediaSection.children);
 
   mediaElements.sort((a, b) => {
@@ -241,6 +287,9 @@ function sortMediaByDate () {
   clearAndAppendElements(mediaElements);
 }
 
+/**
+ * update the total number of likes in priceAndLike div
+ */
 // eslint-disable-next-line no-unused-vars
 function updateTotalLike () {
   const totalLike = document.querySelector('.totalLike');
@@ -256,6 +305,9 @@ function updateTotalLike () {
   totalLike.textContent = total;
 }
 
+/**
+ * init factory function to create and display data
+ */
 async function init () {
   const id = await getParams();
   const media = await getMedia(id);

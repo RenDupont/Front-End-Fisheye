@@ -1,4 +1,7 @@
 
+/**
+ * open lightbox
+ */
 // eslint-disable-next-line no-unused-vars
 function displayMediaModal () {
   const modal = document.getElementById('lightbox_modal');
@@ -6,23 +9,35 @@ function displayMediaModal () {
   const body = document.body;
   const img = document.querySelector('.imageLightbox');
   const video = document.querySelector('.videoLightbox');
+  const nameMediaLightbox = document.getElementById('nameMediaLightbox');
+
+  let mediaTitle;
+  let updatedTitle;
 
   if (this.tagName === 'VIDEO') {
     img.style.display = 'none';
     video.style.display = 'block';
     video.src = this.src;
+    mediaTitle = this.title;
+    updatedTitle = mediaTitle.replace(/, closeup view$/, '');
   } else { // IMG
     img.style.display = 'block';
     video.style.display = 'none';
     img.src = this.src;
+    mediaTitle = this.alt;
+    updatedTitle = mediaTitle.replace(/, closeup view$/, '');
   }
 
+  nameMediaLightbox.textContent = updatedTitle;
   modal.style.display = 'block';
   main.setAttribute('aria-hidden', true);
   modal.setAttribute('aria-hidden', false);
   body.classList.add('no-scroll');
 }
 
+/**
+ * close lightbox
+ */
 function closeMediaModal () {
   const modal = document.getElementById('lightbox_modal');
   const main = document.getElementById('main');
@@ -34,6 +49,10 @@ function closeMediaModal () {
   body.classList.remove('no-scroll');
 }
 
+/**
+ * close lighbox with escape key
+ * @param {*} event
+ */
 function closeWithKeyDown (event) {
   if (event.key === 'Escape') {
     closeMediaModal();

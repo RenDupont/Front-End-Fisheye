@@ -1,3 +1,7 @@
+
+/**
+ * open contact modal
+ */
 function displayModal () {
   const modal = document.getElementById('contact_modal');
   const main = document.getElementById('main');
@@ -9,6 +13,9 @@ function displayModal () {
   body.classList.add('no-scroll');
 }
 
+/**
+ * close contact modal
+ */
 function closeModal () {
   const modal = document.getElementById('contact_modal');
   const main = document.getElementById('main');
@@ -20,6 +27,10 @@ function closeModal () {
   body.classList.remove('no-scroll');
 }
 
+/**
+ * close contact modal with escape key
+ * @param {*} event
+ */
 function closeWithKeyDown (event) {
   if (event.key === 'Escape') {
     closeModal();
